@@ -88,6 +88,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    // stop watching socket events
+    _socket!.off("incoming-call");
+    _socket!.off("new-users");
+    _socket!.off("user-left");
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     if( _hasIncomingCall ) {
