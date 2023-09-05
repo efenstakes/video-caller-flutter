@@ -63,6 +63,17 @@ class _CallPageState extends State<CallPage> {
     _remoteRTCRenderer.dispose();
     _localStream?.dispose();
     _rtcPeerConnection?.dispose();
+
+    
+    // stop watching socket events
+    _socket!.off("left-call");
+    _socket!.off("call-denied");
+    _socket!.off("user-left");
+    _socket!.off("call-accepted");
+    _socket!.off("offer-answer");
+    _socket!.off("offer");
+    _socket!.off("ice-candidate");
+
     super.dispose();
   }
 
